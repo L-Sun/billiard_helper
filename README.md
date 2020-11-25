@@ -18,12 +18,12 @@ vcpkg.exe install opencv:x64-windows
 如遇到无法下载，大概率为网络问题，请自行搜索解决方法。
 
 ### 编译
-1. 方法一**VSCode + CMake + Vcpkg** ：在VSCode中安装CMakeTools插件，并在`.vscode/settings.json`修改`DCMAKE_TOOLCHAIN_FILE`值为Vcpkg的安装路径。然后使用Vscode编译即可。
+1. 方法一**VSCode + CMake + Vcpkg** ：在VSCode中安装CMakeTools插件，并将`.vscode/settings.json`中的`DCMAKE_TOOLCHAIN_FILE`的值修改为`${pathToVcpkg}/scripts/buildsystems/vcpkg.cmake`，其中`${pathToVcpkg}`为Vcpkg的安装路径。然后使用VSCode编译即可。
 
 2. 方法一：直接使用命令行编译，注意将`${pathToVcpkg}`换为Vcpkg的安装路径
 ```ps
 mkdir build
 cd bulid
-cmake .. -DCMAKE_TOOLCHAIN_FILE={pathToVcpkg}/scripts/buildsystems/vcpkg.cmake
+cmake .. -DCMAKE_TOOLCHAIN_FILE=${pathToVcpkg}/scripts/buildsystems/vcpkg.cmake
 cmake --build . --config Release -j 8
 ```
