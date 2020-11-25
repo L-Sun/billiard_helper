@@ -31,7 +31,7 @@ public:
         return m_DeskImage;
     }
 
-    template <typename Func, typename... Args>
+    template <typename Func>
     Application& AddCallback(int hotKeyId, Func&& func) {
         m_CallBackFunc.emplace(hotKeyId, std::forward<Func>(func));
         return *this;

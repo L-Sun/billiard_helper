@@ -5,6 +5,7 @@
 #include <opencv2/imgproc.hpp>
 
 #include <limits>
+#include <iostream>
 
 void ImageAnalyser::UpdateDesk(const std::vector<uint8_t>& desk) {
     if (desk.empty()) return;
@@ -17,12 +18,10 @@ void ImageAnalyser::UpdateDesk(const std::vector<uint8_t>& desk) {
 
     cv::Mat m1, m2;
     cv::cvtColor(mat, m1, cv::COLOR_BGR2HLS);
-    cv::Scalar lower(49, 0, 0);
-    cv::Scalar upperb(59, 255, 255);
+    cv::Scalar lower(55, 0, 0);
+    cv::Scalar upperb(65, 255, 255);
     cv::inRange(m1, lower, upperb, gray);
 }
-
-double ImageAnalyser::GetBallSize() { return 13; }
 
 std::vector<Vec2> ImageAnalyser::GetBallsPosition() {
     auto& mat  = std::any_cast<cv::Mat&>(m_ImgMat);
@@ -30,9 +29,9 @@ std::vector<Vec2> ImageAnalyser::GetBallsPosition() {
 
     std::vector<cv::Vec3f> circles;
     cv::HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1,
-                     20,              // change this value to detect circles with different distances to each other
-                     100, 14, 13, 13  // change the last two parameters
-                                      // (min_radius & max_radius) to detect larger circles
+                     20,             // change this value to detect circles with different distances to each other
+                     85, 13, 13, 13  // change the last two parameters
+                                     // (min_radius & max_radius) to detect larger circles
     );
 
     auto pow2 = [](auto x) { return x * x; };

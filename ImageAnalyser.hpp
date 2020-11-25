@@ -18,8 +18,7 @@ public:
 
     void UpdateDesk(const std::vector<uint8_t>& desk);
 
-    double GetBallSize();
-    // the first ball is cue ball
+    // the last ball is cue ball
     std::vector<Vec2> GetBallsPosition();
 
 private:

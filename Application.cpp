@@ -197,7 +197,7 @@ Application& Application::MoveCursor(const Vec2& pos) {
     SetForegroundWindow(m_Window);
     SetActiveWindow(m_Window);
     SetFocus(m_Window);
-    SetCursorPos(pos.x + rc.left + 0.5, pos.y + rc.top + 0.5);
+    SetCursorPos(pos.x + rc.left, pos.y + rc.top);
     return *this;
 }
 
@@ -224,7 +224,8 @@ LRESULT CALLBACK Application::WindowProc(HWND hWnd, UINT message, WPARAM wParam,
                 pThis->UpdateCapture(deskWindow);
                 RECT rc = {};
                 GetWindowRect(deskWindow, &rc);
-                SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_SHOWWINDOW);
+                SetWindowPos(hWnd, HWND_TOPMOST, rc.left, rc.top,
+                             rc.right - rc.left, rc.bottom - rc.top, SWP_SHOWWINDOW);
                 if (pThis->m_CallBackFunc.count(wParam) == 1) {
                     pThis->m_CallBackFunc.at(wParam)();
                 }
