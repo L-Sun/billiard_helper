@@ -8,3 +8,22 @@
 2. 进入桌球房间并打开该辅助
 3. 鼠标移动至目标球，按下`Ctrl+D`会自动判断你想要的击球点
 4. 按下`Ctrl+F`显示当前库边反射路径（误差大）
+
+## 编译
+### 环境
+请确保安装了[Vcpkg](https://github.com/microsoft/vcpkg/)，CMake，以及C++17以上的编译环境。使用Vcpkg进行OpenCV安装，安装方式如下
+```ps
+vcpkg.exe install opencv:x64-windows
+```
+如遇到无法下载，大概率为网络问题，请自行搜索解决方法。
+
+### 编译
+1. 方法一**VSCode + CMake + Vcpkg** ：在VSCode中安装CMakeTools插件，并在`.vscode/settings.json`修改`DCMAKE_TOOLCHAIN_FILE`值为Vcpkg的安装路径。然后使用Vscode编译即可。
+
+2. 直接使用命令行编译，注意将`${pathToVcpkg}`换为Vcpkg的安装路径
+```ps
+mkdir build
+cd bulid
+cmake .. -DCMAKE_TOOLCHAIN_FILE={pathToVcpkg}/scripts/buildsystems/vcpkg.cmake
+cmake --build . --config Release -j 8
+```

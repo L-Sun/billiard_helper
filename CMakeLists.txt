@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15.0)
-project(billiard_helper VERSION 0.1.0)
+project(billiard_helper VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -12,7 +12,3 @@ target_link_libraries(BilliardHelper PRIVATE opencv_core opencv_imgcodecs)
 add_executable(billiard_helper WIN32 main.cpp Application.cpp)
 target_link_libraries(billiard_helper PRIVATE BilliardHelper Winmm)
 target_compile_definitions(billiard_helper PRIVATE UNICODE)
-
-enable_testing()
-
-add_subdirectory(test)
